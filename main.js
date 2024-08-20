@@ -1,3 +1,5 @@
+// operations
+
 function add(a, b) {
     return a + b;
 }
@@ -21,6 +23,7 @@ function percent(a) {
     return a/100
 }
 
+// decide which operation based on operator, return result of operation
 let firstNumber = null;
 let secondNumber = null;
 let operator = null;
@@ -40,8 +43,9 @@ function operate(operator, num1, num2) {
     }
 }
 
-let displayValue = "0";
+// display
 const display = document.getElementById("display");
+let displayValue = display.textContent;
 
 function updateDisplay() {
     display.textContent = displayValue;
@@ -53,7 +57,7 @@ function handleDigitClick(digit) {
     } else {
         displayValue += digit;
     }
-    // updateDisplay();
+    updateDisplay();
 }
 
 const digitButtons = document.querySelectorAll('.digit');
@@ -90,22 +94,3 @@ clearButton.addEventListener('click', () => {
     displayValue = "0";
     updateDisplay();
 });
-
-// edge cases
-equalsButton.addEventListener('click', () => {
-    if (firstNumber !== null && operator !== null) {
-        secondNumber = parseFloat(displayValue);
-        let result = operate(operator, firstNumber, secondNumber);
-
-        if (typeof result === 'number' && !Number.isInteger(result)) {
-            result = result.toFixed(10);
-        }
-
-        displayValue = String(result);
-        updateDisplay();
-        firstNumber = result;
-        secondNumber = null;
-        operator = null;
-    }
-});
-
