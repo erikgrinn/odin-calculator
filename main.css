@@ -1,0 +1,55 @@
+/* below is using previous flex ways with fixed rows/columns */
+
+#calculator {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+#display {
+    width: 100%;
+    background-color: #222;
+    color: white;
+    text-align: right;
+    padding: 5px;
+    margin: 4px;
+    font-size: 24px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    display: flex;
+    flex: 25%;
+    margin: 5px;
+    padding: 15px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+button:active {
+    background-color: #ddd;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-between;
+}
+
+#zero {
+    flex: 57.5%; 
+}
