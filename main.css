@@ -1,11 +1,9 @@
-/* body {
+body {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    margin: 0 auto;
-    align-items: center;
+    min-height: 100vh;
     justify-content: center;
-} */
+}
 
 #calculator {
     display: flex;
@@ -13,7 +11,7 @@
     width: 300px;
     margin: 0 auto;
     align-items: center;
-    /* justify-content: center; */
+    justify-content: center;
     background-color: #333;
     padding: 10px;
     border-radius: 8px;
@@ -25,7 +23,7 @@
     color: white;
     text-align: right;
     padding: 5px;
-    margin: 4px;
+    /* margin: auto; */
     font-size: 24px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
@@ -35,7 +33,7 @@
 button {
     display: flex;
     flex: 25%;
-    margin: 5px;
+    margin: 2px;
     padding: 15px;
     font-size: 18px;
     border: 1px solid #ccc;
@@ -56,7 +54,7 @@ button:active {
     align-items: center;
     justify-content:space-between;
 }
-
+/* not exact? */
 #zero {
-    flex: 57.5%; 
+    flex: 52.5%; 
 }
