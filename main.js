@@ -43,6 +43,16 @@ function operate(operator, num1, num2) {
     }
 }
 
+const digitButtons = document.querySelectorAll('.digit');
+const operatorButtons = document.querySelectorAll('.operator');
+const equalsButton = document.getElementById('equals');
+const clearButton = document.getElementById('clear');
+const signButton = document.getElementById('sign');
+const percentButton = document.getElementById('percent')
+const decimalButton = document.getElementById('decimal')
+
+let result = 0
+
 // display
 const display = document.getElementById("display");
 let displayValue = display.textContent;
@@ -60,13 +70,21 @@ function handleDigitClick(digit) {
     updateDisplay();
 }
 
-const digitButtons = document.querySelectorAll('.digit');
-const operatorButtons = document.querySelectorAll('.operator');
-const equalsButton = document.getElementById('equals');
-const clearButton = document.getElementById('clear');
-const signButton = document.getElementById('sign');
-const percentButton = document.getElementById('percent')
-const decimalButton = document.getElementById('decimal')
+function handleOperaticClick(button, selectedOperator) {
+    button.style.cssText = 'background-color: #aaa;'
+    if (firstNumber === null) {
+        firstNumber = parseFloat(displayValue);  // Store the first number
+    } else if (operator) {
+        secondNumber = parseFloat(displayValue);  // Store the second number
+        firstNumber = operate(operator, firstNumber, secondNumber);  // Perform the operation
+        displayValue = String(firstNumber);
+        updateDisplay();
+        console.log(button)
+    }
+    operator = selectedOperator;  // Update the operator
+    displayValue = "0";
+    
+}
 
 
 digitButtons.forEach(button => {
@@ -77,28 +95,28 @@ digitButtons.forEach(button => {
 });
 
 operatorButtons.forEach(button => {
-    let opButtonClicked = false
-    button.addEventListener('click', () => {
-        opButtonClicked = true
-        // button.setAttribute('clicked', true)
-        // console.log(button)
-        firstNumber = parseFloat(displayValue);
-        operator = button.textContent;
-        displayValue = "0";
-        button.style.cssText = 'background-color: #aaa;'
-        // if (!opButtonClicked) {
-        //     button.style.cssText = 'background-color: #aaa;'
-        // }
-    });
+    button.addEventListener('click', () => handleOperaticClick(button, button.textContent));
 });
 
 equalsButton.addEventListener('click', () => {
     operatorButtons.forEach(button => button.style.cssText = 'background-color: #f1f1f1;') //inline, will overwrites
     secondNumber = parseFloat(displayValue);
-    const result = operate(operator, firstNumber, secondNumber);
-    displayValue = String(result);
+    result = operate(operator, firstNumber, secondNumber);
+    firstNumber = result
+    secondNumber = null
+    displayValue = String(firstNumber);
     updateDisplay();
 });
+
+signButton.addEventListener('click', () => {
+    console.log(displayValue)
+    if (displayValue.charAt(0) !== '-') {
+    displayValue = '-' + displayValue.slice(0)
+    } else {
+        displayValue = displayValue.slice(1)
+    } 
+    updateDisplay()
+})
 
 clearButton.addEventListener('click', () => {
     operatorButtons.forEach(button => button.style.cssText = 'background-color: #f1f1f1;') //inline, will overwrites
