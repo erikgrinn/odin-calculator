@@ -72,21 +72,28 @@ const decimalButton = document.getElementById('decimal')
 digitButtons.forEach(button => {
     button.addEventListener('click', () => {
         handleDigitClick(button.textContent)
-        operatorButtons.forEach(button => button.style.cssText = 'background-color: #f1f1f1;')
+        operatorButtons.forEach(button => button.style.cssText = 'background-color: #f1f1f1;') //inline, overwrites
     });
 });
 
 operatorButtons.forEach(button => {
+    let opButtonClicked = false
     button.addEventListener('click', () => {
+        opButtonClicked = true
+        // button.setAttribute('clicked', true)
+        // console.log(button)
         firstNumber = parseFloat(displayValue);
         operator = button.textContent;
         displayValue = "0";
         button.style.cssText = 'background-color: #aaa;'
+        // if (!opButtonClicked) {
+        //     button.style.cssText = 'background-color: #aaa;'
+        // }
     });
 });
 
 equalsButton.addEventListener('click', () => {
-    operatorButtons.forEach(button => button.style.cssText = 'background-color: #f1f1f1;')
+    operatorButtons.forEach(button => button.style.cssText = 'background-color: #f1f1f1;') //inline, will overwrites
     secondNumber = parseFloat(displayValue);
     const result = operate(operator, firstNumber, secondNumber);
     displayValue = String(result);
@@ -94,7 +101,7 @@ equalsButton.addEventListener('click', () => {
 });
 
 clearButton.addEventListener('click', () => {
-    operatorButtons.forEach(button => button.style.cssText = 'background-color: #f1f1f1;')
+    operatorButtons.forEach(button => button.style.cssText = 'background-color: #f1f1f1;') //inline, will overwrites
     firstNumber = null;
     secondNumber = null;
     operator = null;

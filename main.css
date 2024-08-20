@@ -22,12 +22,12 @@ body {
     background-color: #222;
     color: white;
     text-align: right;
-    padding: 5px;
-    /* margin: auto; */
+    padding: 5px 0;
     font-size: 24px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    overflow: hidden;
 }
 
 button {
@@ -44,7 +44,7 @@ button {
 }
 
 button:active {
-    background-color: #ddd;
+    background-color: #aaa;
 }
 
 .row {
