@@ -68,19 +68,35 @@ const signButton = document.getElementById('sign');
 const percentButton = document.getElementById('percent')
 const decimalButton = document.getElementById('decimal')
 
+let digitClicked = false
+let operatorClicked = false
+let equalsClicked = false
+let clearClicked = false
+let signClicked = false
+let percentClicked = false
+let decimalClicked = false
+
 digitButtons.forEach(button => {
-    button.addEventListener('click', () => handleDigitClick(button.textContent));
+    button.addEventListener('click', () => {
+        handleDigitClick(button.textContent)
+        operatorButtons.forEach(button => {button.style.cssText = 'background-color: #f1f1f1;'})
+    });
 });
 
 operatorButtons.forEach(button => {
     button.addEventListener('click', () => {
+        operatorClicked = true
         firstNumber = parseFloat(displayValue);
         operator = button.textContent;
         displayValue = "0";
+        button.style.cssText = 'background-color: #ddd;'
     });
 });
 
+
 equalsButton.addEventListener('click', () => {
+    operatorButtons.forEach(button => {button.style.cssText = 'background-color: #f1f1f1;'})
+    equalsClicked = true
     secondNumber = parseFloat(displayValue);
     const result = operate(operator, firstNumber, secondNumber);
     displayValue = String(result);
@@ -88,6 +104,7 @@ equalsButton.addEventListener('click', () => {
 });
 
 clearButton.addEventListener('click', () => {
+    clearClicked = true
     firstNumber = null;
     secondNumber = null;
     operator = null;
