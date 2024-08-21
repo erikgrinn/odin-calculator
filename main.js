@@ -52,7 +52,7 @@ const signButton = document.getElementById('sign');
 const percentButton = document.getElementById('percent')
 const decimalButton = document.getElementById('decimal')
 
-let result = 0
+// let result = 0
 
 // display
 const display = document.getElementById("display");
@@ -84,38 +84,25 @@ function handleOperatorClick(button, selectedOperator) {
         operator = selectedOperator;
         shouldResetDisplay = true;
     } else if (operator) {
-        if (operator != selectedOperator && shouldResetDisplay) {
+        if (operator !== selectedOperator && shouldResetDisplay) {
             let opButtonsOff = []
-            // for (let i=0; i<4; i++) {
-            //     console.log(operatorButtons.values)
-            // }
             operatorButtons.forEach(opButton => {
                 console.log(opButton)
                 if (opButton.textContent !== selectedOperator) {
                     // opButtonsOff.push(opButton.textContent)
                     opButton.style.cssText = 'background-color: #f1f1f1;'
-                    console.log(opButtonsOff)
-                    
+                    return
                 }
             })
         }
-
-
         secondNumber = parseFloat(displayValue);  // Store the second number
         firstNumber = operate(operator, firstNumber, secondNumber);  // Perform the operation
         secondNumber = null
         displayValue = String(firstNumber);
+        console.log(shouldResetDisplay)
         updateDisplay();
-        console.log(firstNumber, secondNumber)
         operator = selectedOperator;
         shouldResetDisplay = true;
-    // } else if(!secondNumber) {
-    //     secondNumber = parseFloat(displayValue)
-    //     // firstNumber = operate
-    //     shouldResetDisplay = false
-
-       
-
     }
 }
 
@@ -130,7 +117,6 @@ function handleEqualsClick(equalsButton) {
     shouldResetDisplay = true;
 
 }
-
 
 digitButtons.forEach(button => {
     button.addEventListener('click', () => {
