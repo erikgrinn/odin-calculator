@@ -68,7 +68,6 @@ let secondNumber = null;
 let operator = null;
 let shouldResetDisplay = false;
 function handleOperatorClick(button, selectedOperator) {
-    console.log(operator, selectedOperator, shouldResetDisplay)
     button.style.opacity = '0.75'
     if (firstNumber === null) {
         firstNumber = parseFloat(displayValue); 
