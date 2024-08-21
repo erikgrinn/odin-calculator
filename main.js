@@ -77,7 +77,7 @@ function handleDigitClick(digit) {
 }
 
 function handleOperatorClick(button, selectedOperator) {
-    button.style.cssText = 'background-color: #aaa;'
+    button.style.opacity = '0.75'
     if (firstNumber === null) {
         firstNumber = parseFloat(displayValue);  // Store the first number
         operator = selectedOperator;
@@ -85,7 +85,7 @@ function handleOperatorClick(button, selectedOperator) {
     } else if (operator !== selectedOperator && shouldResetDisplay) {
             operatorButtons.forEach(opButton => {
                 if (opButton.textContent !== selectedOperator) {
-                    opButton.style.cssText = 'background-color: #f1f1f1;'
+                    opButton.style.opacity = '1'
                     operator = selectedOperator
                 }
             })
@@ -103,7 +103,7 @@ function handleOperatorClick(button, selectedOperator) {
 
 function handleEqualsClick(equalsButton) {
     if (!shouldResetDisplay) {
-        operatorButtons.forEach(button => button.style.cssText = 'background-color: #f1f1f1;') //inline, overwrites
+        operatorButtons.forEach(button => button.style.opacity = '1') 
         secondNumber = parseFloat(displayValue);
         result = operate(operator, firstNumber, secondNumber);
         displayValue = String(result);
@@ -122,7 +122,7 @@ function handleEqualsClick(equalsButton) {
 digitButtons.forEach(button => {
     button.addEventListener('click', () => {
         handleDigitClick(button.textContent)
-        operatorButtons.forEach(button => button.style.cssText = 'background-color: #f1f1f1;') //inline, overwrites
+        operatorButtons.forEach(button => button.style.opacity = '1') 
     });
 });
 
@@ -143,7 +143,7 @@ signButton.addEventListener('click', () => {
 })
 
 clearButton.addEventListener('click', () => {
-    operatorButtons.forEach(button => button.style.cssText = 'background-color: #f1f1f1;') //inline, will overwrites
+    operatorButtons.forEach(button => button.style.opacity = '1')
     firstNumber = null;
     secondNumber = null;
     operator = null;

@@ -38,12 +38,12 @@ body {
 }
 
 span {
-    /* margin-right: 3px; */
     padding-right: 3px;
 }
 
 button {
-    display: flex;
+    /* display: flex;
+    flex-direction: column; */
     height: 75px;
     flex: 25%;
     margin: 2px;
@@ -52,13 +52,17 @@ button {
     border: 1px solid #ccc;
     background-color: #f1f1f1;
     cursor: pointer;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center;
+    justify-content: center; */
     border-radius: 4px;
+} 
+
+#multiply {
+    padding-top: 28px;
 }
 
-button:active {
-    background-color: #aaa;
+.digit:active {
+    opacity: 0.75;
 }
 
 .row {
@@ -66,20 +70,31 @@ button:active {
     width: 100%;
     flex-direction: row;
     align-items: center;
-    justify-content:space-between;
+    justify-content:center;
 }
 /* not exact? */
 #zero {
     flex: 52.5%; 
 }
 
-/* .operator,
+.operator,
 #equals {
-    background-color: #fd7a53;
+    background-color: #cf542f;
+
+}
+
+#equals:active {
+    opacity: 0.75;
 }
 
 #clear,
 #sign,
 #percent {
     background-color: #4765b7;
-} */
+}
+
+#clear:active,
+#sign:active,
+#percent:active {
+    opacity: 0.75;
+}
