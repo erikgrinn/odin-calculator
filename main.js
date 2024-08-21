@@ -76,14 +76,31 @@ function handleDigitClick(digit) {
     updateDisplay();
 }
 
-function handleOperaticClick(button, selectedOperator) {
+function handleOperatorClick(button, selectedOperator) {
     button.style.cssText = 'background-color: #aaa;'
-    console.log(displayValue)
+    console.log(button, operator, selectedOperator)
     if (firstNumber === null) {
         firstNumber = parseFloat(displayValue);  // Store the first number
         operator = selectedOperator;
         shouldResetDisplay = true;
     } else if (operator) {
+        if (operator != selectedOperator && shouldResetDisplay) {
+            let opButtonsOff = []
+            // for (let i=0; i<4; i++) {
+            //     console.log(operatorButtons.values)
+            // }
+            operatorButtons.forEach(opButton => {
+                console.log(opButton)
+                if (opButton.textContent !== selectedOperator) {
+                    // opButtonsOff.push(opButton.textContent)
+                    opButton.style.cssText = 'background-color: #f1f1f1;'
+                    console.log(opButtonsOff)
+                    
+                }
+            })
+        }
+
+
         secondNumber = parseFloat(displayValue);  // Store the second number
         firstNumber = operate(operator, firstNumber, secondNumber);  // Perform the operation
         secondNumber = null
@@ -92,12 +109,14 @@ function handleOperaticClick(button, selectedOperator) {
         console.log(firstNumber, secondNumber)
         operator = selectedOperator;
         shouldResetDisplay = true;
-    } else if(!secondNumber) {
-        secondNumber = parseFloat(displayValue)
-        firstNumber = operate
-        shouldResetDisplay = false
-    }
+    // } else if(!secondNumber) {
+    //     secondNumber = parseFloat(displayValue)
+    //     // firstNumber = operate
+    //     shouldResetDisplay = false
 
+       
+
+    }
 }
 
 function handleEqualsClick(equalsButton) {
@@ -109,6 +128,7 @@ function handleEqualsClick(equalsButton) {
     secondNumber = null
     updateDisplay();
     shouldResetDisplay = true;
+
 }
 
 
@@ -120,7 +140,7 @@ digitButtons.forEach(button => {
 });
 
 operatorButtons.forEach(button => {
-    button.addEventListener('click', () => handleOperaticClick(button, button.textContent));
+    button.addEventListener('click', () => handleOperatorClick(button, button.textContent));
 });
 
 equalsButton.addEventListener('click', () => handleEqualsClick(equalsButton))
