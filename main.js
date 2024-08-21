@@ -1,15 +1,13 @@
-// operations
-
 function add(a, b) {
-    return Math.round((a + b)*10000)/10000;
+    return a + b;
 }
 
 function subtract(a, b) {
-    return Math.round((a - b)*10000)/10000;
+    return a - b;
 }
 
 function multiply(a, b) {
-    return Math.round((a * b)*10000)/10000;
+    return a * b;
 }
 
 function divide(a, b) {
@@ -19,16 +17,7 @@ function divide(a, b) {
     return Math.round((a / b)*10000)/10000;
 }
 
-function percent(a) {
-    return a/100
-}
-
 // decide which operation based on operator, return result of operation
-let firstNumber = null;
-let secondNumber = null;
-let operator = null;
-let shouldResetDisplay = false;
-
 function operate(operator, num1, num2) {
     switch (operator) {
         case '+':
@@ -52,9 +41,6 @@ const signButton = document.getElementById('sign');
 const percentButton = document.getElementById('percent')
 const decimalButton = document.getElementById('decimal')
 
-// let result = 0
-
-// display
 const display = document.querySelector("span");
 let displayValue = display.textContent;
 
@@ -64,41 +50,45 @@ function updateDisplay() {
 
 function handleDigitClick(digit) {
     if (shouldResetDisplay) {
-        displayValue = digit;  // Start fresh with the new digit
+        displayValue = digit;  
         shouldResetDisplay = false;
     } else {
         if (displayValue === '0' && '.') {
-            displayValue = digit;  // Replace initial "0" with the digit
+            displayValue = digit;  
         } else {
-            displayValue += digit;  // Append digit to the current display value
+            displayValue += digit;  
         }
     }
     updateDisplay();
 }
 
+// handling various uses of operator clicks
+let firstNumber = null;
+let secondNumber = null;
+let operator = null;
+let shouldResetDisplay = false;
 function handleOperatorClick(button, selectedOperator) {
+    console.log(operator, selectedOperator, shouldResetDisplay)
     button.style.opacity = '0.75'
     if (firstNumber === null) {
-        firstNumber = parseFloat(displayValue);  // Store the first number
-        operator = selectedOperator;
+        firstNumber = parseFloat(displayValue); 
         shouldResetDisplay = true;
-    } else if (operator !== selectedOperator && shouldResetDisplay) {
+    } else if (shouldResetDisplay) {
             operatorButtons.forEach(opButton => {
                 if (opButton.textContent !== selectedOperator) {
                     opButton.style.opacity = '1'
-                    operator = selectedOperator
                 }
             })
     } else {
-        secondNumber = parseFloat(displayValue);  // Store the second number
-        firstNumber = operate(operator, firstNumber, secondNumber);  // Perform the operation
+        secondNumber = parseFloat(displayValue);  
+        firstNumber = operate(operator, firstNumber, secondNumber);  
         secondNumber = null
-        console.log(shouldResetDisplay)
         displayValue = String(firstNumber);
         updateDisplay();
-        operator = selectedOperator;
         shouldResetDisplay = true;
     }
+    operator = selectedOperator; // for selecting operator instead of equals
+
 }
 
 function handleEqualsClick(equalsButton) {
@@ -109,7 +99,6 @@ function handleEqualsClick(equalsButton) {
         displayValue = String(result);
         updateDisplay();
         firstNumber = result
-        // secondNumber = null
         shouldResetDisplay = true;
     } else if (shouldResetDisplay) {
         result = operate(operator,firstNumber, secondNumber)
@@ -145,7 +134,7 @@ signButton.addEventListener('click', () => {
 percentButton.addEventListener('click', () => {
     let clicked = null
     if (!clicked) {
-        displayValue = displayValue/100
+        displayValue = divide(displayValue, 100)
         updateDisplay()
         clicked = 1
     }
@@ -164,5 +153,4 @@ clearButton.addEventListener('click', () => {
     displayValue = "0";
     shouldResetDisplay = true;
     updateDisplay();
-
 });
