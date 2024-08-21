@@ -5,6 +5,7 @@ body {
     justify-content: center;
     margin: 0;
     padding: 0;
+    background-color: #80331c
 
 }
 
@@ -66,3 +67,14 @@ button:active {
 #zero {
     flex: 52.5%; 
 }
+
+/* .operator,
+#equals {
+    background-color: #fd7a53;
+}
+
+#clear,
+#sign,
+#percent {
+    background-color: #4765b7;
+} */
