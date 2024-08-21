@@ -27,6 +27,7 @@ function percent(a) {
 let firstNumber = null;
 let secondNumber = null;
 let operator = null;
+let shouldResetDisplay = false;
 
 function operate(operator, num1, num2) {
     switch (operator) {
@@ -62,28 +63,52 @@ function updateDisplay() {
 }
 
 function handleDigitClick(digit) {
-    if (displayValue === "0") {
-        displayValue = digit;
+    if (shouldResetDisplay) {
+        displayValue = digit;  // Start fresh with the new digit
+        shouldResetDisplay = false;
     } else {
-        displayValue += digit;
+        if (displayValue === "0") {
+            displayValue = digit;  // Replace initial "0" with the digit
+        } else {
+            displayValue += digit;  // Append digit to the current display value
+        }
     }
     updateDisplay();
 }
 
 function handleOperaticClick(button, selectedOperator) {
     button.style.cssText = 'background-color: #aaa;'
+    console.log(displayValue)
     if (firstNumber === null) {
         firstNumber = parseFloat(displayValue);  // Store the first number
+        operator = selectedOperator;
+        shouldResetDisplay = true;
     } else if (operator) {
         secondNumber = parseFloat(displayValue);  // Store the second number
         firstNumber = operate(operator, firstNumber, secondNumber);  // Perform the operation
+        secondNumber = null
         displayValue = String(firstNumber);
         updateDisplay();
-        console.log(button)
+        console.log(firstNumber, secondNumber)
+        operator = selectedOperator;
+        shouldResetDisplay = true;
+    } else if(!secondNumber) {
+        secondNumber = parseFloat(displayValue)
+        firstNumber = operate
+        shouldResetDisplay = false
     }
-    operator = selectedOperator;  // Update the operator
-    displayValue = "0";
-    
+
+}
+
+function handleEqualsClick(equalsButton) {
+    operatorButtons.forEach(button => button.style.cssText = 'background-color: #f1f1f1;') //inline, will overwrites
+    secondNumber = parseFloat(displayValue);
+    result = operate(operator, firstNumber, secondNumber);
+    displayValue = String(result);
+    firstNumber = null
+    secondNumber = null
+    updateDisplay();
+    shouldResetDisplay = true;
 }
 
 
@@ -98,15 +123,8 @@ operatorButtons.forEach(button => {
     button.addEventListener('click', () => handleOperaticClick(button, button.textContent));
 });
 
-equalsButton.addEventListener('click', () => {
-    operatorButtons.forEach(button => button.style.cssText = 'background-color: #f1f1f1;') //inline, will overwrites
-    secondNumber = parseFloat(displayValue);
-    result = operate(operator, firstNumber, secondNumber);
-    firstNumber = result
-    secondNumber = null
-    displayValue = String(firstNumber);
-    updateDisplay();
-});
+equalsButton.addEventListener('click', () => handleEqualsClick(equalsButton))
+
 
 signButton.addEventListener('click', () => {
     console.log(displayValue)
@@ -124,5 +142,7 @@ clearButton.addEventListener('click', () => {
     secondNumber = null;
     operator = null;
     displayValue = "0";
+    shouldResetDisplay = true;
     updateDisplay();
+
 });
