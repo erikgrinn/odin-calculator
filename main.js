@@ -67,7 +67,7 @@ function handleDigitClick(digit) {
         displayValue = digit;  // Start fresh with the new digit
         shouldResetDisplay = false;
     } else {
-        if (displayValue === "0") {
+        if (displayValue === '0' && '.') {
             displayValue = digit;  // Replace initial "0" with the digit
         } else {
             displayValue += digit;  // Append digit to the current display value
