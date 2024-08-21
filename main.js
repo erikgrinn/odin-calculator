@@ -14,7 +14,7 @@ function multiply(a, b) {
 
 function divide(a, b) {
     if (b === 0) {
-        return "I'd rather not";
+        return "Impossible";
     }
     return a / b;
 }
@@ -93,6 +93,7 @@ function handleOperatorClick(button, selectedOperator) {
         secondNumber = parseFloat(displayValue);  // Store the second number
         firstNumber = operate(operator, firstNumber, secondNumber);  // Perform the operation
         secondNumber = null
+        console.log(shouldResetDisplay)
         displayValue = String(firstNumber);
         updateDisplay();
         operator = selectedOperator;
@@ -107,8 +108,8 @@ function handleEqualsClick(equalsButton) {
         result = operate(operator, firstNumber, secondNumber);
         displayValue = String(result);
         updateDisplay();
-        firstNumber = null
-        secondNumber = null
+        firstNumber = result
+        // secondNumber = null
         shouldResetDisplay = true;
 
     // } else if (shouldResetDisplay) {
