@@ -102,7 +102,7 @@ function handleOperatorClick(button, selectedOperator) {
 }
 
 function handleEqualsClick(equalsButton) {
-    // if (!shouldResetDisplay){
+    if (!shouldResetDisplay) {
         operatorButtons.forEach(button => button.style.cssText = 'background-color: #f1f1f1;') //inline, overwrites
         secondNumber = parseFloat(displayValue);
         result = operate(operator, firstNumber, secondNumber);
@@ -111,15 +111,12 @@ function handleEqualsClick(equalsButton) {
         firstNumber = result
         // secondNumber = null
         shouldResetDisplay = true;
-
-    // } else if (shouldResetDisplay) {
-    //     result = operate(lastOperator, firstNumber, lastSecondNumber)
-    //     console.log(shouldResetDisplay, firstNumber, secondNumber, result)
-
-    //     displayValue = String(result)
-    //     updateDisplay()
-    // }
-
+    } else if (shouldResetDisplay) {
+        result = operate(operator,firstNumber, secondNumber)
+        displayValue = String(result)
+        updateDisplay()
+        firstNumber = result
+    }
 }
 
 digitButtons.forEach(button => {
