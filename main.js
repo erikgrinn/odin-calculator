@@ -40,6 +40,7 @@ const clearButton = document.getElementById('clear');
 const signButton = document.getElementById('sign');
 const percentButton = document.getElementById('percent')
 const decimalButton = document.getElementById('decimal')
+const delButton = document.getElementById('delete')
 
 const display = document.querySelector("span");
 let displayValue = display.textContent;
@@ -144,6 +145,11 @@ percentButton.addEventListener('click', () => {
     }
 })
 
+delButton.addEventListener('click', () => {
+    displayValue = displayValue.substring(0, displayValue.length - 1)
+    updateDisplay()
+})
+
 clearButton.addEventListener('click', () => {
     operatorButtons.forEach(button => button.style.opacity = '1')
     firstNumber = null;
@@ -153,3 +159,4 @@ clearButton.addEventListener('click', () => {
     shouldResetDisplay = true;
     updateDisplay();
 });
+
