@@ -42,8 +42,6 @@ span {
 }
 
 button {
-    /* display: flex;
-    flex-direction: column; */
     height: 75px;
     flex: 25%;
     margin: 2px;
@@ -52,8 +50,8 @@ button {
     border: 1px solid #ccc;
     background-color: #f1f1f1;
     cursor: pointer;
-    /* align-items: center;
-    justify-content: center; */
+    align-items: center;
+    justify-content: center;
     border-radius: 4px;
 } 
 
