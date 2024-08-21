@@ -83,18 +83,16 @@ function handleOperatorClick(button, selectedOperator) {
         firstNumber = parseFloat(displayValue);  // Store the first number
         operator = selectedOperator;
         shouldResetDisplay = true;
-    } else if (operator) {
-        if (operator !== selectedOperator && shouldResetDisplay) {
+    } else if (operator !== selectedOperator && shouldResetDisplay) {
             let opButtonsOff = []
             operatorButtons.forEach(opButton => {
                 console.log(opButton)
                 if (opButton.textContent !== selectedOperator) {
-                    // opButtonsOff.push(opButton.textContent)
                     opButton.style.cssText = 'background-color: #f1f1f1;'
-                    return
+                    operator = selectedOperator
                 }
             })
-        }
+    } else {
         secondNumber = parseFloat(displayValue);  // Store the second number
         firstNumber = operate(operator, firstNumber, secondNumber);  // Perform the operation
         secondNumber = null
