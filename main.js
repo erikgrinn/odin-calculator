@@ -102,8 +102,8 @@ function handleOperatorClick(button, selectedOperator) {
 }
 
 function handleEqualsClick(equalsButton) {
+    operatorButtons.forEach(button => button.style.opacity = '1') 
     if (!shouldResetDisplay) {
-        operatorButtons.forEach(button => button.style.opacity = '1') 
         secondNumber = parseFloat(displayValue);
         result = operate(operator, firstNumber, secondNumber);
         displayValue = String(result);
