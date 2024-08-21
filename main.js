@@ -14,7 +14,7 @@ function multiply(a, b) {
 
 function divide(a, b) {
     if (b === 0) {
-        return "Error: Division by 0";
+        return "I'd rather not";
     }
     return a / b;
 }
@@ -55,7 +55,7 @@ const decimalButton = document.getElementById('decimal')
 // let result = 0
 
 // display
-const display = document.getElementById("display");
+const display = document.querySelector("span");
 let displayValue = display.textContent;
 
 function updateDisplay() {

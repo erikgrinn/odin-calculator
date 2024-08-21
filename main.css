@@ -37,6 +37,11 @@ body {
     overflow: hidden;
 }
 
+span {
+    /* margin-right: 3px; */
+    padding-right: 3px;
+}
+
 button {
     display: flex;
     height: 75px;
