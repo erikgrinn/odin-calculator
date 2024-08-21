@@ -70,6 +70,7 @@ button {
     align-items: center;
     justify-content:center;
 }
+
 /* not exact? */
 #zero {
     flex: 52.5%; 
