@@ -142,6 +142,20 @@ signButton.addEventListener('click', () => {
     updateDisplay()
 })
 
+percentButton.addEventListener('click', () => {
+    let clicked = null
+    if (!clicked) {
+        displayValue = displayValue/100
+        updateDisplay()
+        clicked = 1
+    }
+    else if (clicked) {
+        display = displayValue * 100
+        updateDisplay()
+        clicked = null
+    }
+})
+
 clearButton.addEventListener('click', () => {
     operatorButtons.forEach(button => button.style.opacity = '1')
     firstNumber = null;
