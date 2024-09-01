@@ -55,9 +55,9 @@ button {
     border-radius: 4px;
 } 
 
-#multiply {
+/* #multiply {
     padding-top: 28px;
-}
+} */
 
 .digit:active {
     opacity: 0.75;
